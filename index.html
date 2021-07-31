@@ -7,10 +7,53 @@
     <title>Employee Directory</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="scripts/app.js" defer></script> -->
+    
     <script src="scripts/employeeData.js" defer></script>
+    <script src="scripts/app.js" defer></script>
 </head>
 <body>
-    <div id="testArea">Insert details here</div>
+    <header>
+        <h1>Employee Directory</h1>
+        <p>This page will be populated with employee data taken from the randomUser API</p>
+        <form>
+            <label for="search-directory">Search for an employee</label>
+            <input type="text" name="search-directory" placeholder="Search">
+        </form>
+    </header>
+
+    <main class="employee-profiles">
+
+        <!-- placeholder to view employee-card classes and structure -->
+        <!-- <div class="employee-card">
+            <img src="https://via.placeholder.com/250x150" alt="Profile image of user" class="user-image">
+            <div class="employee-name">Employee Name</div>
+            <div class="employee-email">Employee Email</div>
+            <div class="employee-city">Employee City</div>
+        </div> -->
+
+        <!-- placeholder to view employee-card classes and structure -->
+        <!-- <div class="employee-modal">
+            <div class="modal-card">
+                <div class="modal-nav">
+                    <div class="modal-previous">&lt;</div>
+                </div>
+                <div class="modal-content">
+                    <div class="close-modal">X</div>
+                    <img src="" alt="">
+                    <div class="employee-name">placeholder</div>
+                    <div class="employee-email">placeholder</div>
+                    <div class="employee-city">placeholder</div>
+                    <hr>
+                    <div class="employee-cell">placeholder</div>
+                    <div class="employee-address">placeholder</div>
+                    <div class="employee-birthday">placeholder</div>
+                </div>
+                <div class="modal-nav">
+                    <div class="modal-next">&gt;</div>
+                </div>
+            </div>
+        </div> -->
+    </main>
+    <div class="overlay"></div>
 </body>
 </html>

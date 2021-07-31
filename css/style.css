@@ -1,0 +1,118 @@
+/*  universal reset standards */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* header styling */
+
+header {
+    background-color: coral;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+header :is(h1, p, label, input) {
+    margin: 0.75em;
+    text-transform: uppercase;
+}
+
+header form {
+    display: flex;
+    flex-flow: column;
+}
+
+/* main styling */
+
+body {
+    background-color: tomato;
+}
+
+img {
+    border-radius: 50%;
+}
+
+/* Employee Card Styling */
+.employee-profiles {
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.employee-card {
+    background: whitesmoke;
+    display: flex;
+    flex-flow: column;
+    width: 250px;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid blue;
+}
+
+.employee-card:hover {
+    background: chartreuse;
+}
+
+.employee-card :not(img) {
+    margin: 10px 0; 
+}
+
+/* MODAL */
+
+.employee-modal {
+    background-color: rgb(0, 0, 0, 0.4);
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+
+    /* position content in centre of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-card {
+    background: green;
+    z-index: 101;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-nav {
+    background-color: white;
+    font-size: 40px;
+}
+
+
+/* .modal-card::before {
+    content: "<";
+    position: absolute;
+    left: -10%;
+    top: 46%;
+    font-size: 50px;
+    background-color: blue;
+}
+
+.modal-card::after {
+    content: ">";
+    position: absolute;
+    right: -10%;
+    top: 46%;
+    font-size: 50px;
+    background-color: blue;
+} */
+
+.close-modal {
+    align-self: flex-end;
+    padding-right: 20%;
+}
+
+.modal-card hr {
+    width: 80%;
+}
