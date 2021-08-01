@@ -23,7 +23,6 @@ const concatEmployeeAddress = (data) => {
     return employeeAddress;
 }
 
-
 // SORT EMPLOYEE DATA ALPHABETICALLY
 const sortAlphabetically = (data) => {
     data.sort((a, b) => {
@@ -36,7 +35,6 @@ const sortAlphabetically = (data) => {
     console.log(data);
 };
 
-
 // STORES FETCHED EMPLOYEE DATA AND PUSHES TO EMPTY ARRAY
 const storeEmployeeData = (data) => {
     for (i = 0; i < data.length; i++) {
@@ -45,6 +43,55 @@ const storeEmployeeData = (data) => {
         console.log(employeeData);
     };
 };
+
+// ISOLATES EMPLOYEE EMAIL FROM SELECTED CARD
+const isolateEmail = (employeeCardHTML) => {
+
+    // EXTRACTS EMAIL FROM HTML CONTENT AND STORES IT TO A VARIABLE
+    const email = employeeCardHTML.split('<div class="employee-email">').pop().split('</div>')[0];
+    return email;
+}
+
+
+// FIND INDEX IN EMPLOYEE DATASET ACCORDING TO EMAIL
+const findEmployeeIndex = (email) => {
+    const index = employeeData.findIndex(employee => employee.email === email);
+    
+    // RETURN THE INDEX AS AN INTEGER
+    return index;
+};
+
+
+// ISOLATE EMPLOYEE FROM EMPLOYEE DATASET
+const isolateEmployee = (clickTarget) => {
+
+    // if (clickTarget.)
+    const email = isolateEmail(clickTarget.innerHTML);
+    // const employeeIndex = findEmployeeIndex(email);
+    // const employee = employeeData[employeeIndex];
+    // return employee;
+    currentModalIndex = findEmployeeIndex(email);
+};
+
+// ADDS EVENT LISTENER TO CLOSE MODAL
+const closeModal = () => {
+
+    // SELECTS NEWLY CREATED CLOSE-MODAL ELEMENT
+    const closeModal = document.querySelector('.close-modal');
+
+    // ADDS ON-CLICK EVENT LISTENER
+    closeModal.addEventListener("click", (e) => {
+
+        // CLEARS THE OVERLAY AND MODAL CONTENT
+        overlay.innerHTML = "";
+    })
+
+    document.addEventListener('click', (e) => {
+        if (e.target.className === "employee-modal"){
+            overlay.innerHTML = "";
+        }
+    })
+}
 
 
 
@@ -63,10 +110,12 @@ const createEmployeeProfile = (data) => {
         // CREATES PERSONALISED EMPLOYEE CARD
         const employeeProfile = `
             <div class="employee-card">
-                <img src="${employee.picture.medium}" alt="Profile image of ${employee.name}" class="user-image">
-                <div class="employee-name">${concatEmployeeName(employee)}</div>
-                <div class="employee-email">${employee.email}</div>
-                <div class="employee-city">${employee.location.city}</div>
+                <img src="${employee.picture.large}" alt="Profile image of ${employee.name}" class="employee-image">
+                <div class="employee-info">
+                    <div class="employee-name">${concatEmployeeName(employee)}</div>
+                    <div class="employee-email">${employee.email}</div>
+                    <div class="employee-city">${employee.location.city}</div>
+                </div>
             </div>
         `;
 
@@ -78,20 +127,6 @@ const createEmployeeProfile = (data) => {
     };
 };
 
-
-// ADDS EVENT LISTENER TO CLOSE MODAL
-const closeModal = () => {
-
-    // SELECTS NEWLY CREATED CLOSE-MODAL ELEMENT
-    const closeModal = document.querySelector('.close-modal');
-
-    // ADDS ON-CLICK EVENT LISTENER
-    closeModal.addEventListener("click", (e) => {
-
-        // CLEARS THE OVERLAY AND MODAL CONTENT
-        overlay.innerHTML = "";
-    })
-}
 
 // CREATES THE EMPLOYEE MODAL 
 const employeeModal = (employeeIndex) => {
@@ -107,7 +142,7 @@ const employeeModal = (employeeIndex) => {
         <div class="employee-modal">
             <div class="modal-card">
                 <div class="modal-nav">
-                    <div class="modal-previous">&lt;</div>
+                    <div class="modal-previous"><span>&lt;</span></div>
                 </div>
                 <div class="modal-content">
                     <div class="close-modal">X</div>
@@ -130,43 +165,10 @@ const employeeModal = (employeeIndex) => {
     // ADDS MODAL TO THE DOM
     overlay.innerHTML += employeeModal;
 
-    // UPDATE CURRENT MODAL IDENTIFIER
-    // currentModalIndex = findEmployeeIndex(employee.email);
-
     // APPLIES CLOSE MODAL EVENT LISTENER
     modalNavListeners();
     closeModal();
 
-};
-
-
-
-// ISOLATES EMPLOYEE EMAIL FROM SELECTED CARD
-const isolateEmail = (employeeCardHTML) => {
-
-    // EXTRACTS EMAIL FROM HTML CONTENT AND STORES IT TO A VARIABLE
-    const email = employeeCardHTML.split('<div class="employee-email">').pop().split('</div>')[0];
-    return email;
-}
-
-
-
-// FIND INDEX IN EMPLOYEE DATASET ACCORDING TO EMAIL
-const findEmployeeIndex = (email) => {
-    const index = employeeData.findIndex(employee => employee.email === email);
-    
-    // RETURN THE INDEX AS AN INTEGER
-    return index;
-};
-
-
-// ISOLATE EMPLOYEE FROM EMPLOYEE DATASET
-const isolateEmployee = (dataSet) => {
-    const email = isolateEmail(dataSet.innerHTML);
-    // const employeeIndex = findEmployeeIndex(email);
-    // const employee = employeeData[employeeIndex];
-    // return employee;
-    currentModalIndex = findEmployeeIndex(email);
 };
 
 
@@ -179,14 +181,9 @@ const modalListeners = () => {
     // ITERATES THROUGH NODELIST TO APPLY EVENT LISTENERS
     employeeCards.forEach(item => {
         item.addEventListener('click', (e) => {
-
             // DEFINES THE CHOSEN EMPLOYEE AS THE CLICK TARGET
-            // const employee = isolateEmployee(e.target);
-            isolateEmployee(e.target);
-            console.log(currentModalIndex);
-
+            isolateEmployee(item);
             // CREATES A MODAL FOR THE CHOSEN EMPLOYEE
-            // employeeModal(employee);
             employeeModal(currentModalIndex);
         })
     })
@@ -220,4 +217,30 @@ const modalNavListeners = () => {
 }
 
     
-// SEARCH
+// SEARCH FUNCTION
+
+const searchBar = document.getElementById('search-directory');
+
+document.addEventListener('keyup', (e) => {
+    // e.target.style.display = "none";
+    console.log('clicked');
+    searchEmployees();
+})
+
+const searchEmployees = () => {
+    let input = document.getElementById('search-directory').value;
+    input = input.toLowerCase();
+    
+    // CREATE AN HTMLCOLLECTION OF EMPLOYEE NAMES
+    let employeeNames = document.getElementsByClassName('employee-name');
+
+    //ITERATE THROUGH THE LIST OF NAMES TO FIND MATCHES
+    for (i = 0; i < employeeNames.length; i++) {
+        if (employeeNames[i].textContent.toLowerCase().includes(input)) {
+            employeeNames[i].parentElement.parentElement.style.display = "flex";
+        }
+        else {
+            employeeNames[i].parentElement.parentElement.style.display = "none";
+        }
+    }
+};

@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Directory</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;500;700&display=swap" rel="stylesheet"> 
+
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     
@@ -14,10 +19,9 @@
 <body>
     <header>
         <h1>Employee Directory</h1>
-        <p>This page will be populated with employee data taken from the randomUser API</p>
         <form>
             <label for="search-directory">Search for an employee</label>
-            <input type="text" name="search-directory" placeholder="Search">
+            <input type="text" name="search-directory" placeholder="Search" id="search-directory">
         </form>
     </header>
 
@@ -25,14 +29,16 @@
 
         <!-- placeholder to view employee-card classes and structure -->
         <!-- <div class="employee-card">
-            <img src="https://via.placeholder.com/250x150" alt="Profile image of user" class="user-image">
-            <div class="employee-name">Employee Name</div>
-            <div class="employee-email">Employee Email</div>
-            <div class="employee-city">Employee City</div>
+                <img src="https://via.placeholder.com/250x150" alt="Profile image of user" class="employee-image">
+                <div class="employee-info">
+                    <div class="employee-name">Employee Name</div>
+                    <div class="employee-email">Employee Email</div>
+                    <div class="employee-city">Employee City</div>
+                </div>
         </div> -->
 
         <!-- placeholder to view employee-card classes and structure -->
-        <!-- <div class="employee-modal">
+        <!--<div class="employee-modal">
             <div class="modal-card">
                 <div class="modal-nav">
                     <div class="modal-previous">&lt;</div>

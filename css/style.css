@@ -1,118 +1,159 @@
-/*  universal reset standards */
+/* GENERAL & UNIVERSAL STYLES  */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Raleway', sans-serif;
+    
 }
-
-/* header styling */
-
-header {
-    background-color: coral;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-}
-
-header :is(h1, p, label, input) {
-    margin: 0.75em;
-    text-transform: uppercase;
-}
-
-header form {
-    display: flex;
-    flex-flow: column;
-}
-
-/* main styling */
 
 body {
-    background-color: tomato;
+    background-color: white;
+    color: gray;
 }
 
 img {
     border-radius: 50%;
 }
 
-/* Employee Card Styling */
-.employee-profiles {
-    padding: 10px;
+/* HEADER STYLING */
+
+header {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
+    
+    background-color: whitesmoke;
+    color: black;
+
+    border-bottom: 1px solid gray;
+    text-transform: uppercase;
+}
+
+header * {
+    padding: 0.5em;
+}
+
+header input {
+    width: 30%;
+}
+
+/* EMPLOYEE CARD STYLING */
+
+/* Grid layout for structuring imported API data */
+.employee-profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(425px, auto));
+    grid-template-rows: auto;
+    gap: 1em;
+    padding: 1em;
+}
+
+/* Styling for individual employee profiles */
+.employee-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+
+    background: whitesmoke;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Feedback on hover */
+.employee-card:hover {
+    background: chartreuse;
+} 
+
+/* Positions employee information on the card */
+.employee-info {
+    display: flex;
+    flex-flow: column;
     justify-content: center;
 }
 
-.employee-card {
-    background: whitesmoke;
-    display: flex;
-    flex-flow: column;
-    width: 250px;
-    align-items: center;
-    margin: 10px;
-    border: 1px solid blue;
-}
 
-.employee-card:hover {
-    background: chartreuse;
-}
 
-.employee-card :not(img) {
-    margin: 10px 0; 
-}
+/* MODAL STYLING*/
 
-/* MODAL */
-
+/* Creates and positions overlay */
 .employee-modal {
     background-color: rgb(0, 0, 0, 0.4);
     position: absolute;
     inset: 0;
-    z-index: 100;
+    display: grid;
+    place-items: center;
+}
 
-    /* position content in centre of the screen */
+/* Styles modal popup */
+.modal-card {
+    background: whitesmoke;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+    width: 400px;
+    border-radius: 5px;
+}
+
+/* Styles content on employee modal card */
+.modal-content {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.85em;
+    padding-bottom: 2.5em;
+}
+
+.employee-image {
+    width: 150px;
+}
+
+.employee-name {
+    font-weight: 700;
+    font-size: 1.35em;
+    color: black;
+}
+
+.modal-card hr {
+    width: 80%;
+    height: 0;
+    border: 0;
+    border-top: 1px solid rgb(197, 197, 197);    
+}
+
+/* Styles and positions modal navigation elements */
+.modal-nav {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgb(104, 103, 103);
+    font-size: 40px;
+    height: 100%;
+    width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.modal-card {
-    background: green;
-    z-index: 101;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 20px;
+.modal-nav span {
+    cursor: pointer;
 }
 
-.modal-nav {
-    background-color: white;
-    font-size: 40px;
+.modal-nav:first-of-type {
+    margin-right: 10px;
 }
-
-
-/* .modal-card::before {
-    content: "<";
-    position: absolute;
-    left: -10%;
-    top: 46%;
-    font-size: 50px;
-    background-color: blue;
+.modal-nav:last-of-type {
+    margin-left: 10px;
 }
-
-.modal-card::after {
-    content: ">";
-    position: absolute;
-    right: -10%;
-    top: 46%;
-    font-size: 50px;
-    background-color: blue;
-} */
 
 .close-modal {
+    cursor: pointer;
     align-self: flex-end;
-    padding-right: 20%;
-}
-
-.modal-card hr {
-    width: 80%;
+    margin-right: 10px;
+    font-weight: 800;
 }

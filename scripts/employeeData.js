@@ -18,10 +18,13 @@ getUserData()
         return data.results;
     })
     .then(data => {
+        // Sorts the returned employee data
         sortAlphabetically(data);
+        // Stores the sorted user data into an array
         storeEmployeeData(data);
+        // Creates the employee directory using the stored data
         createEmployeeProfile(employeeData);
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(`An error occured: ${error}`));
 
 
