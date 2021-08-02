@@ -134,6 +134,8 @@ const employeeModal = (employeeIndex) => {
     // STORES OBJECT DATA FOR CURRENT EMPLOYEE
     const employee = employeeData[employeeIndex];
 
+    let employeeBirthdate = new Date(employee.dob.date);
+
     // CLEARS MODAL DOM
     overlay.innerHTML = '';
 
@@ -153,7 +155,7 @@ const employeeModal = (employeeIndex) => {
                     <hr>
                     <div class="employee-cell">${employee.cell}</div>
                     <div class="employee-address">${concatEmployeeAddress(employee)}</div>
-                    <div class="employee-birthday">${employee.dob.date}</div>
+                    <div class="employee-birthday">${employeeBirthdate.getMonth()}/${employeeBirthdate.getDate()}/${employeeBirthdate.getFullYear()}</div>
                 </div>
                 <div class="modal-nav">
                     <div class="modal-next">&gt;</div>
@@ -223,7 +225,6 @@ const searchBar = document.getElementById('search-directory');
 
 document.addEventListener('keyup', (e) => {
     // e.target.style.display = "none";
-    console.log('clicked');
     searchEmployees();
 })
 

@@ -4,7 +4,7 @@ const getUserData = async () => {
 
     const base = "https://randomuser.me/api/";
     const userCount = 12;
-    const query = `?results=${userCount}&inc=picture,name,email,location,cell,dob&nat=AU`;
+    const query = `?results=${userCount}&inc=picture,name,email,location,cell,dob&nat=US`;
 
     const response = await fetch(base + query);
     const data = await response.json();
